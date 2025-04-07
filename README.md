@@ -84,6 +84,7 @@ Ce projet a pour but de centraliser la **gestion des stocks, des ventes** et de 
 ## 📫 Contact
 
 Développé avec ❤️ par **Fatima-Ezzahra Alouane**  
+
 📧 falouane38@gmail.com
 
 🔗 https://www.linkedin.com/in/fatima-ezzahra-alouane/
