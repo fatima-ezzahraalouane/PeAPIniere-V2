@@ -14,7 +14,20 @@ export default function Home() {
           Une plateforme moderne pour découvrir, commander et gérer vos plantes favorites. Connectez-vous ou inscrivez-vous pour commencer !
         </p>
 
-       
+        <div className="flex gap-4 justify-center">
+          <button
+            onClick={() => navigate("/login")}
+            className="bg-green-600 text-white px-6 py-3 rounded-full shadow-md hover:bg-green-700 transition transform hover:scale-105"
+          >
+            Connexion
+          </button>
+          <button
+            onClick={() => navigate("/register")}
+            className="bg-white text-green-600 border border-green-600 px-6 py-3 rounded-full shadow-md hover:bg-green-50 transition transform hover:scale-105"
+          >
+            Inscription
+          </button>
+        </div>
       </div>
     </div>
   );
