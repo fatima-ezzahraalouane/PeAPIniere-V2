@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Popup from "../components/Popup";
 
@@ -13,16 +13,6 @@ export default function Register() {
 
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-
-//   useEffect(() => {
-//     if (message || error) {
-//       const timer = setTimeout(() => {
-//         setMessage("");
-//         setError("");
-//       }, 1500);
-//       return () => clearTimeout(timer);
-//     }
-//   }, [message, error]);
 
   const handleChange = (e) => {
     setFormData({
