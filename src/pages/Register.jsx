@@ -2,8 +2,12 @@ import axios from "axios";
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+// Importation de jQuery
 import $ from "jquery";
 import "parsleyjs";
+
+// Attribuer jQuery à window.$ et window.jQuery pour Parsley
+window.$ = window.jQuery = $;
 
 export default function Register() {
     const [formData, setFormData] = useState({
@@ -14,19 +18,38 @@ export default function Register() {
     });
 
     const [message, setMessage] = useState("");
-    const [error, setError] = useState("");
+    const [errors, setErrors] = useState({
+        name: "",
+        email: "",
+        password: "",
+        general: ""
+    });
 
     const handleChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value,
         });
+        
+        // Réinitialiser l'erreur pour ce champ quand l'utilisateur commence à taper
+        if (errors[e.target.name]) {
+            setErrors({
+                ...errors,
+                [e.target.name]: ""
+            });
+        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const isValid = window.$(formRef.current).parsley().isValid();
+        // Réinitialiser les erreurs
+        setErrors({name: "", email: "", password: "", general: ""});
+        
+        // Vérification de Parsley
+        const parsleyForm = $(formRef.current).parsley();
+        const isValid = parsleyForm.isValid();
+        
         if (!isValid) return; // Arrête si le formulaire n'est pas valide
 
         try {
@@ -40,26 +63,58 @@ export default function Register() {
             setTimeout(() => {
                 window.location.href = "/login";
             }, 1000);
+            
         } catch (error) {
-            console.error("Erreur lors de l'inscription :", error);
-            setError(error.response?.data?.message || "Une erreur est survenue.");
+            if (error.response && error.response.status === 422) {
+                const data = error.response.data;
+                
+                if (data.errors) {
+                    const newErrors = { name: "", email: "", password: "", general: "" };
+                    
+                    Object.entries(data.errors).forEach(([field, messages]) => {
+                        const errorMessages = Array.isArray(messages) ? messages : [messages];
+                        const errorMessage = errorMessages[0];
+                        
+                        // Traduire les messages d'erreur anglais en français
+                        let translatedMessage = errorMessage;
+                        if (errorMessage === "The email has already been taken.") {
+                            translatedMessage = "Cette adresse email est déjà utilisée.";
+                        }
+                        
+                        if (field in newErrors) {
+                            newErrors[field] = translatedMessage;
+                        } else {
+                            newErrors.general += translatedMessage + " ";
+                        }
+                    });
+                    
+                    setErrors(newErrors);
+                } else if (data.message) {
+                    if (data.message === "The email has already been taken.") {
+                        setErrors({...errors, email: "Cette adresse email est déjà utilisée."});
+                    } else {
+                        setErrors({...errors, general: data.message});
+                    }
+                } else {
+                    setErrors({...errors, general: "Erreur de validation."});
+                }
+            } else {
+                setErrors({
+                    ...errors, 
+                    general: "Une erreur s'est produite lors de l'inscription. Veuillez réessayer."
+                });
+            }
         }
     };
-
-    // const closePopup = () => {
-    //     setMessage("");
-    //     setError("");
-    // };
 
     const formRef = useRef(null);
 
     useEffect(() => {
+        // Initialiser Parsley
         if (formRef.current) {
             $(formRef.current).parsley();
         }
     }, []);
-
-
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-green-50 to-green-100">
@@ -70,6 +125,12 @@ export default function Register() {
                 <p className="text-center text-gray-600 mb-6">
                     Créez votre compte pour commencer votre aventure verte !
                 </p>
+
+                {message && (
+                    <div className="bg-green-100 text-green-700 text-sm px-4 py-2 rounded-md mb-4">
+                        {message}
+                    </div>
+                )}
 
                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-4" data-parsley-validate>
                     <div>
@@ -86,6 +147,9 @@ export default function Register() {
                             placeholder="ex: Fatima-Ezzahra"
                             className="shadow-md appearance-none border border-gray-300 rounded-full w-full py-2 px-4 text-gray-700 focus:ring-2 focus:ring-green-500 focus:outline-none"
                         />
+                        {errors.name && (
+                            <div className="text-red-500 text-xs mt-1">{errors.name}</div>
+                        )}
                     </div>
 
                     <div>
@@ -102,6 +166,9 @@ export default function Register() {
                             placeholder="ex: fatima@example.com"
                             className="shadow-md appearance-none border border-gray-300 rounded-full w-full py-2 px-4 text-gray-700 focus:ring-2 focus:ring-green-500 focus:outline-none"
                         />
+                        {errors.email && (
+                            <div className="text-red-500 text-xs mt-1">{errors.email}</div>
+                        )}
                     </div>
 
                     <div>
@@ -120,6 +187,9 @@ export default function Register() {
                             placeholder="********"
                             className="shadow-md appearance-none border border-gray-300 rounded-full w-full py-2 px-4 text-gray-700 focus:ring-2 focus:ring-green-500 focus:outline-none"
                         />
+                        {errors.password && (
+                            <div className="text-red-500 text-xs mt-1">{errors.password}</div>
+                        )}
                     </div>
 
                     <div>
@@ -141,8 +211,13 @@ export default function Register() {
                     >
                         S'inscrire
                     </button>
+                    
+                    {errors.general && (
+                        <div className="bg-red-100 text-red-700 text-sm px-4 py-2 rounded-md mt-2">
+                            {errors.general}
+                        </div>
+                    )}
                 </form>
-
 
                 <p className="mt-4 text-sm text-center text-gray-600">
                     Vous avez déjà un compte ?{" "}
