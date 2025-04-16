@@ -79,6 +79,7 @@ export default function Plantes() {
                             />
                             <div className="p-5">
                                 <h2 className="text-xl font-bold text-green-700 mb-2">{plant.name}</h2>
+                                <p className="text-green-800 font-semibold mb-2">{plant.price} DH</p>
                                 <p className="text-gray-600 text-sm mb-4">
                                     {plant.description.slice(0, 90)}...
                                 </p>
