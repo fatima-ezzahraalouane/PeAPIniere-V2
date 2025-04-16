@@ -56,7 +56,7 @@ export default function PlantDetail() {
                                         <img
                                             src={img.url}
                                             alt={`Image ${index + 1} de ${plant.name}`}
-                                            className="w-full h-80 object-cover rounded-xl"
+                                            className="w-full h-100 object-cover rounded-xl"
                                         />
                                     </SwiperSlide>
                                 ))}
