@@ -42,26 +42,11 @@ export default function Plantes() {
             {/* Navbar */}
             <nav className="bg-green-700 text-white shadow-md">
                 <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+                    <Link to="/client/accueil" className="text-2xl font-bold">PéAPInière 🌱</Link>
                     <div className="flex items-center space-x-4">
-                        <Link to="/client/accueil" className="text-2xl font-bold">
-                            PéAPInière 🌱
-                        </Link>
-                        <div className="hidden md:flex space-x-6">
-                            <Link to="/client/plants" className="hover:text-green-200 transition">
-                                Nos Plantes
-                            </Link>
-                        </div>
-                    </div>
-                    <div className="flex items-center space-x-4">
-                        <Link to="/client/panier" className="hover:text-green-200 transition">
-                            🛒 Panier
-                        </Link>
-                        <button
-                            onClick={handleLogout}
-                            className="bg-red-600 hover:bg-red-700 px-3 py-1 rounded-full text-sm transition"
-                        >
-                            Déconnexion
-                        </button>
+                        <Link to="/client/plants" className="hover:text-green-200">Nos Plantes</Link>
+                        <Link to="/client/panier" className="hover:text-green-200">🛒 Panier</Link>
+                        <button onClick={handleLogout} className="bg-red-600 hover:bg-red-700 px-3 py-1 rounded-full text-sm">Déconnexion</button>
                     </div>
                 </div>
             </nav>
@@ -78,8 +63,8 @@ export default function Plantes() {
                         <button
                             onClick={() => handleCategoryClick("")}
                             className={`px-4 py-2 rounded-full border ${selectedCategory === ""
-                                    ? "bg-green-600 text-white"
-                                    : "border-green-600 text-green-700 hover:bg-green-100"
+                                ? "bg-green-600 text-white"
+                                : "border-green-600 text-green-700 hover:bg-green-100"
                                 }`}
                         >
                             Toutes
@@ -89,8 +74,8 @@ export default function Plantes() {
                                 key={cat.id}
                                 onClick={() => handleCategoryClick(cat.slug)}
                                 className={`px-4 py-2 rounded-full border ${selectedCategory === cat.slug
-                                        ? "bg-green-600 text-white"
-                                        : "border-green-600 text-green-700 hover:bg-green-100"
+                                    ? "bg-green-600 text-white"
+                                    : "border-green-600 text-green-700 hover:bg-green-100"
                                     }`}
                             >
                                 {cat.name}
