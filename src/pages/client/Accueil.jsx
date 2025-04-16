@@ -65,7 +65,7 @@ export default function Accueil() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
-                  to="/plants"
+                  to="/client/plants"
                   className="bg-green-600 text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-green-700 shadow-md transition"
                 >
                   🌿 Explorer les plantes
@@ -95,7 +95,7 @@ export default function Accueil() {
                   <h3 className="text-xl font-semibold text-green-700 mb-2">{cat.name}</h3>
                   <p className="text-gray-600 mb-4">{cat.description || "Découvrez nos magnifiques plantes."}</p>
                   <Link
-                    to={`/client/plants?category=${cat.slug}`}
+                    to={`/client/plants`}
                     className="text-green-600 hover:text-green-800 font-medium"
                   >
                     Découvrir →
