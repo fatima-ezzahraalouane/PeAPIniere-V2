@@ -1,7 +1,11 @@
-// src/pages/client/PlantDetail.jsx
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
 
 export default function PlantDetail() {
     const { slug } = useParams();
@@ -39,18 +43,38 @@ export default function PlantDetail() {
             <main className="container mx-auto px-4 py-10">
                 <div className="bg-white rounded-2xl shadow-lg p-8 md:flex gap-10">
                     <div className="md:w-1/2">
-                        <img
-                            src={plant.images.length > 0 ? plant.images[0].url : "https://via.placeholder.com/500x400?text=Pas+de+photo"}
-                            alt={plant.name}
-                            className="rounded-lg w-full object-cover"
-                        />
+                        {plant.images.length > 0 ? (
+                            <Swiper
+                                modules={[Navigation]}
+                                navigation
+                                spaceBetween={20}
+                                slidesPerView={1}
+                                className="rounded-lg"
+                            >
+                                {plant.images.map((img, index) => (
+                                    <SwiperSlide key={index}>
+                                        <img
+                                            src={img.url}
+                                            alt={`Image ${index + 1} de ${plant.name}`}
+                                            className="w-full h-80 object-cover rounded-xl"
+                                        />
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                        ) : (
+                            <img
+                                src="https://via.placeholder.com/500x400?text=Pas+de+photo"
+                                alt="Pas d'image"
+                                className="rounded-lg w-full object-cover"
+                            />
+                        )}
                     </div>
                     <div className="md:w-1/2 mt-6 md:mt-0">
                         <h2 className="text-3xl font-bold text-green-800 mb-4">{plant.name}</h2>
                         <p className="text-green-700 text-xl font-semibold mb-2">{plant.price} DH</p>
                         <p className="text-gray-700 leading-relaxed mb-6">{plant.description}</p>
                         <p className="text-sm text-gray-500 mb-4">Catégorie : <span className="font-medium text-green-600">{plant.category.name}</span></p>
-                        <button className="bg-green-600 text-white py-2 px-5 rounded-full hover:bg-green-700 text-sm">🛒 Ajouter au panier</button>
+                        <button className="bg-green-600 text-white py-2 px-5 rounded-full hover:bg-green-700 text-sm">Ajouter au panier</button>
                     </div>
                 </div>
             </main>
