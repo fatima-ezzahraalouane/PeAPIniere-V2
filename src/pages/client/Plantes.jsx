@@ -43,17 +43,17 @@ export default function Plantes() {
       <nav className="bg-green-700 text-white shadow-md">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <Link to="/" className="text-2xl font-bold">
+            <Link to="/client/accueil" className="text-2xl font-bold">
               PéAPInière 🌱
             </Link>
             <div className="hidden md:flex space-x-6">
-              <Link to="/plants" className="hover:text-green-200 transition">
+              <Link to="/client/plants" className="hover:text-green-200 transition">
                 Nos Plantes
               </Link>
             </div>
           </div>
           <div className="flex items-center space-x-4">
-            <Link to="/panier" className="hover:text-green-200 transition">
+            <Link to="/client/panier" className="hover:text-green-200 transition">
               🛒 Panier
             </Link>
             <button
@@ -153,8 +153,9 @@ export default function Plantes() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Navigation</h3>
               <ul className="space-y-2">
-                <li><Link to="/" className="text-green-100 hover:text-white">Accueil</Link></li>
-                <li><Link to="/plants" className="text-green-100 hover:text-white">Nos plantes</Link></li>
+                <li><Link to="/client/accueil" className="text-green-100 hover:text-white">Accueil</Link></li>
+                <li><Link to="/client/plants" className="text-green-100 hover:text-white">Nos plantes</Link></li>
+                <li><Link to="/client/panier" className="text-green-100 hover:text-white">Panier</Link></li>
               </ul>
             </div>
             <div>
@@ -170,7 +171,7 @@ export default function Plantes() {
                 <input
                   type="email"
                   placeholder="Votre email"
-                  className="px-4 py-2 rounded-l-lg w-full focus:outline-none text-gray-800"
+                  className="px-4 py-2 rounded-l-lg w-full focus:outline-none text-white"
                 />
                 <button
                   type="submit"
