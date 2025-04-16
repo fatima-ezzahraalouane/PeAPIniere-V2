@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Accueil() {
   const navigate = useNavigate();
@@ -8,6 +10,15 @@ export default function Accueil() {
     localStorage.removeItem("token");
     navigate("/login");
   };
+
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/categories")
+      .then((res) => setCategories(res.data))
+      .catch((err) => console.error("Erreur chargement catégories:", err));
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
@@ -81,7 +92,7 @@ export default function Accueil() {
         </section>
 
         {/* Section Catégories */}
-        <section className="py-16">
+        {/* <section className="py-16">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center text-green-800 mb-12">
               Nos Catégories de Plantes
@@ -119,6 +130,26 @@ export default function Accueil() {
                   Découvrir →
                 </Link>
               </div>
+            </div>
+          </div>
+        </section> */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center text-green-800 mb-12">
+              Nos Catégories de Plantes
+            </h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {categories.map((cat) => (
+                <div key={cat.id} className="bg-white rounded-xl shadow-md hover:shadow-lg transition p-6 text-center">
+                  <div className="text-4xl mb-4">🌿</div>
+                  <h3 className="text-xl font-semibold text-green-700 mb-2">{cat.name}</h3>
+                  <p className="text-gray-600 mb-4">{cat.description || "Découvrez nos magnifiques plantes."}</p>
+                  <Link to={`/categories/${cat.slug}`} className="text-green-600 hover:text-green-800 font-medium">
+                    Découvrir →
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
         </section>
