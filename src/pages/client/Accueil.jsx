@@ -152,115 +152,51 @@ export default function Accueil() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-green-800 text-white">
-        <div className="container mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4">PéAPInière 🌱</h3>
-              <p className="text-green-100 mb-4">
-                Votre pépinière en ligne depuis 2020. Nous proposons des plantes de qualité pour tous les espaces.
-              </p>
-              <div className="flex space-x-4">
-                <a href="#" className="text-white hover:text-green-200">
-                  <span className="sr-only">Facebook</span>
-                  📱
-                </a>
-                <a href="#" className="text-white hover:text-green-200">
-                  <span className="sr-only">Instagram</span>
-                  📸
-                </a>
-                <a href="#" className="text-white hover:text-green-200">
-                  <span className="sr-only">Twitter</span>
-                  🐦
-                </a>
+            <footer className="bg-green-800 text-white mt-12">
+              <div className="container mx-auto px-4 py-12">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                  <div>
+                    <h3 className="text-xl font-bold mb-4">PéAPInière 🌱</h3>
+                    <p className="text-green-100 mb-4">
+                      Votre pépinière en ligne depuis 2020. Nous proposons des plantes de qualité pour tous les espaces.
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4">Navigation</h3>
+                    <ul className="space-y-2">
+                      <li><Link to="/" className="text-green-100 hover:text-white">Accueil</Link></li>
+                      <li><Link to="/plants" className="text-green-100 hover:text-white">Nos plantes</Link></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4">Service client</h3>
+                    <ul className="space-y-2">
+                      <li><Link to="/contact" className="text-green-100 hover:text-white">Contact</Link></li>
+                      <li><Link to="/faq" className="text-green-100 hover:text-white">FAQ</Link></li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
+                    <form className="flex">
+                      <input
+                        type="email"
+                        placeholder="Votre email"
+                        className="px-4 py-2 rounded-l-lg w-full focus:outline-none text-gray-800"
+                      />
+                      <button
+                        type="submit"
+                        className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-r-lg transition"
+                      >
+                        →
+                      </button>
+                    </form>
+                  </div>
+                </div>
+                <div className="border-t border-green-700 mt-8 pt-8 text-center text-green-200 text-sm">
+                  <p>© 2025 PéAPInière - Tous droits réservés</p>
+                </div>
               </div>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Navigation</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link to="/" className="text-green-100 hover:text-white transition">
-                    Accueil
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/plants" className="text-green-100 hover:text-white transition">
-                    Nos plantes
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/promos" className="text-green-100 hover:text-white transition">
-                    Promotions
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/conseils" className="text-green-100 hover:text-white transition">
-                    Conseils d'entretien
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Service client</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link to="/contact" className="text-green-100 hover:text-white transition">
-                    Contact
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/faq" className="text-green-100 hover:text-white transition">
-                    FAQ
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/livraison" className="text-green-100 hover:text-white transition">
-                    Livraison
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/retours" className="text-green-100 hover:text-white transition">
-                    Retours et remboursements
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
-              <p className="text-green-100 mb-4">
-                Inscrivez-vous pour recevoir nos offres exclusives et conseils d'entretien.
-              </p>
-              <form className="flex">
-                <input
-                  type="email"
-                  placeholder="Votre email"
-                  className="px-4 py-2 rounded-l-lg w-full focus:outline-none text-gray-800"
-                />
-                <button
-                  type="submit"
-                  className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-r-lg transition"
-                >
-                  →
-                </button>
-              </form>
-            </div>
-          </div>
-          <div className="border-t border-green-700 mt-8 pt-8 text-center text-green-200 text-sm">
-            <p>© 2025 PéAPInière - Tous droits réservés</p>
-            <div className="mt-2 space-x-4">
-              <Link to="/mentions-legales" className="hover:text-white transition">
-                Mentions légales
-              </Link>
-              <Link to="/confidentialite" className="hover:text-white transition">
-                Politique de confidentialité
-              </Link>
-              <Link to="/cgv" className="hover:text-white transition">
-                CGV
-              </Link>
-            </div>
-          </div>
-        </div>
-      </footer>
+            </footer>
     </div>
   );
 }
