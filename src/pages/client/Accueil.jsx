@@ -11,6 +11,15 @@ export default function Accueil() {
     navigate("/login");
   };
 
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/categories")
+      .then((res) => setCategories(res.data))
+      .catch((err) => console.error("Erreur chargement catégories:", err));
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       {/* Navbar */}
