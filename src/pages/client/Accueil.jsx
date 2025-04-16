@@ -164,8 +164,9 @@ export default function Accueil() {
                   <div>
                     <h3 className="text-lg font-semibold mb-4">Navigation</h3>
                     <ul className="space-y-2">
-                      <li><Link to="/" className="text-green-100 hover:text-white">Accueil</Link></li>
-                      <li><Link to="/plants" className="text-green-100 hover:text-white">Nos plantes</Link></li>
+                      <li><Link to="/client/accueil" className="text-green-100 hover:text-white">Accueil</Link></li>
+                      <li><Link to="/client/plants" className="text-green-100 hover:text-white">Nos plantes</Link></li>
+                      <li><Link to="/client/panier" className="text-green-100 hover:text-white">Panier</Link></li>
                     </ul>
                   </div>
                   <div>
@@ -181,7 +182,7 @@ export default function Accueil() {
                       <input
                         type="email"
                         placeholder="Votre email"
-                        className="px-4 py-2 rounded-l-lg w-full focus:outline-none text-gray-800"
+                        className="px-4 py-2 rounded-l-lg w-full focus:outline-none text-white"
                       />
                       <button
                         type="submit"
