@@ -23,7 +23,14 @@ export default function App() {
             </PrivateRoute>
           }
         />
-        <Route path="/client/plants" element={<Plantes />} />
+        <Route
+          path="/client/plants"
+          element={
+            <PrivateRoute role="client">
+              <Plantes />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </Router>
   );
