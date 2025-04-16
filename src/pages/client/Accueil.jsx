@@ -25,17 +25,17 @@ export default function Accueil() {
       <nav className="bg-green-700 text-white shadow-md">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <Link to="/" className="text-2xl font-bold">
+            <Link to="/client/accueil" className="text-2xl font-bold">
               PéAPInière 🌱
             </Link>
             <div className="hidden md:flex space-x-6">
-              <Link to="/plants" className="hover:text-green-200 transition">
+              <Link to="/client/plants" className="hover:text-green-200 transition">
                 Nos Plantes
               </Link>
             </div>
           </div>
           <div className="flex items-center space-x-4">
-            <Link to="/panier" className="hover:text-green-200 transition">
+            <Link to="/client/panier" className="hover:text-green-200 transition">
               🛒 Panier
             </Link>
             {/* <Link to="/profil" className="hover:text-green-200 transition">
