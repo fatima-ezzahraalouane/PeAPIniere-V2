@@ -6,6 +6,8 @@ export default function Plantes() {
     const [plants, setPlants] = useState([]);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const [lastPage, setLastPage] = useState(1);
 
     useEffect(() => {
         fetchCategories();
@@ -17,17 +19,29 @@ export default function Plantes() {
         setCategories(response.data);
     };
 
-    const fetchPlants = async (categorySlug = "") => {
-        const url = categorySlug
-            ? `http://localhost:8000/api/plants?category=${categorySlug}`
-            : "http://localhost:8000/api/plants";
+    const fetchPlants = async (categorySlug = "", page = 1) => {
+        let url = `http://localhost:8000/api/plants?page=${page}`;
+        if (categorySlug) {
+            url += `&category=${categorySlug}`;
+        }
+
         const response = await axios.get(url);
-        setPlants(response.data);
+        setPlants(response.data.data);
+        setLastPage(response.data.last_page);
+        setCurrentPage(response.data.current_page);
     };
 
     const handleCategoryClick = (slug) => {
         setSelectedCategory(slug);
-        fetchPlants(slug);
+        fetchPlants(slug, 1);
+    };
+
+    const handlePrev = () => {
+        if (currentPage > 1) fetchPlants(selectedCategory, currentPage - 1);
+    };
+
+    const handleNext = () => {
+        if (currentPage < lastPage) fetchPlants(selectedCategory, currentPage + 1);
     };
 
     return (
@@ -65,10 +79,7 @@ export default function Plantes() {
                 {/* Cartes plantes */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                     {plants.map((plant) => (
-                        <div
-                            key={plant.id}
-                            className="bg-white rounded-xl shadow-lg overflow-hidden"
-                        >
+                        <div key={plant.id} className="bg-white rounded-xl shadow-lg overflow-hidden">
                             <img
                                 src={`http://localhost:8000/storage/${plant.image}`}
                                 alt={plant.name}
@@ -87,12 +98,41 @@ export default function Plantes() {
                                         Voir plus →
                                     </Link>
                                     <button className="bg-green-600 text-white px-4 py-1 rounded-full text-sm hover:bg-green-700">
-                                        Ajouter au panier
+                                        🛒 Ajouter au panier
                                     </button>
                                 </div>
                             </div>
                         </div>
                     ))}
+                </div>
+
+                {/* Pagination */}
+                <div className="flex justify-center mt-10 space-x-4">
+                    <button
+                        onClick={handlePrev}
+                        disabled={currentPage === 1}
+                        className={`px-4 py-2 rounded ${currentPage === 1
+                                ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                                : "bg-green-600 text-white hover:bg-green-700"
+                            }`}
+                    >
+                        ← Précédent
+                    </button>
+
+                    <span className="text-green-800 font-semibold px-4 py-2">
+                        Page {currentPage} / {lastPage}
+                    </span>
+
+                    <button
+                        onClick={handleNext}
+                        disabled={currentPage === lastPage}
+                        className={`px-4 py-2 rounded ${currentPage === lastPage
+                                ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                                : "bg-green-600 text-white hover:bg-green-700"
+                            }`}
+                    >
+                        Suivant →
+                    </button>
                 </div>
             </div>
         </div>
