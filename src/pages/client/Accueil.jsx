@@ -1,6 +1,5 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Accueil() {
@@ -33,15 +32,6 @@ export default function Accueil() {
               <Link to="/plants" className="hover:text-green-200 transition">
                 Nos Plantes
               </Link>
-              {/* <Link to="/promos" className="hover:text-green-200 transition">
-                Promotions
-              </Link>
-              <Link to="/conseils" className="hover:text-green-200 transition">
-                Conseils
-              </Link>
-              <Link to="/contact" className="hover:text-green-200 transition">
-                Contact
-              </Link> */}
             </div>
           </div>
           <div className="flex items-center space-x-4">
@@ -92,47 +82,6 @@ export default function Accueil() {
         </section>
 
         {/* Section Catégories */}
-        {/* <section className="py-16">
-          <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center text-green-800 mb-12">
-              Nos Catégories de Plantes
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition p-6 text-center">
-                <div className="text-4xl mb-4">🌵</div>
-                <h3 className="text-xl font-semibold text-green-700 mb-2">Plantes d'intérieur</h3>
-                <p className="text-gray-600 mb-4">Des plantes adaptées à tous les espaces intérieurs.</p>
-                <Link to="/categories/interieur" className="text-green-600 hover:text-green-800 font-medium">
-                  Découvrir →
-                </Link>
-              </div>
-              <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition p-6 text-center">
-                <div className="text-4xl mb-4">🌸</div>
-                <h3 className="text-xl font-semibold text-green-700 mb-2">Plantes à fleurs</h3>
-                <p className="text-gray-600 mb-4">Apportez de la couleur à votre jardin ou balcon.</p>
-                <Link to="/categories/fleurs" className="text-green-600 hover:text-green-800 font-medium">
-                  Découvrir →
-                </Link>
-              </div>
-              <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition p-6 text-center">
-                <div className="text-4xl mb-4">🌿</div>
-                <h3 className="text-xl font-semibold text-green-700 mb-2">Plantes aromatiques</h3>
-                <p className="text-gray-600 mb-4">Des herbes fraîches pour sublimer vos plats.</p>
-                <Link to="/categories/aromatiques" className="text-green-600 hover:text-green-800 font-medium">
-                  Découvrir →
-                </Link>
-              </div>
-              <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition p-6 text-center">
-                <div className="text-4xl mb-4">🌳</div>
-                <h3 className="text-xl font-semibold text-green-700 mb-2">Arbres et arbustes</h3>
-                <p className="text-gray-600 mb-4">Créez de l'ombre et structurez votre jardin.</p>
-                <Link to="/categories/arbres" className="text-green-600 hover:text-green-800 font-medium">
-                  Découvrir →
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section> */}
         <section className="py-16">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center text-green-800 mb-12">

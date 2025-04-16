@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import PrivateRoute from "./components/PrivateRoute";
 import Accueil from "./pages/client/Accueil";
+import Plantes from "./pages/client/Plantes";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
             </PrivateRoute>
           }
         />
+        <Route path="/client/plants" element={<Plantes />} />
       </Routes>
     </Router>
   );
