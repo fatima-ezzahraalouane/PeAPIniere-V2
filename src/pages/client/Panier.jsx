@@ -62,11 +62,11 @@ export default function Panier() {
             alert("Commande passée avec succès !");
             setCart([]);
             localStorage.removeItem("cart");
-            navigate("/client/accueil"); // ou une page de confirmation
+            navigate("/client/accueil");
         } catch (error) {
+            console.error("Erreur détaillée :", error.response?.data || error.message);
             alert("Erreur lors de l'envoi de la commande.");
-            console.error(error);
-        }
+          }          
     };
 
     return (
@@ -109,7 +109,7 @@ export default function Panier() {
                             </div>
                         ))}
                         <div className="text-right text-lg font-bold text-green-700">Total : {total} DH</div>
-                        
+
                         <div className="text-right mt-4">
                             <button
                                 onClick={handleOrder}
