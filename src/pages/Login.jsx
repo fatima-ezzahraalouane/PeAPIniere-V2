@@ -25,7 +25,7 @@ export default function Login() {
       // redirection selon le rôle
       switch (user.role) {
         case "admin":
-          navigate("/admin/dashboard-admin");
+          navigate("/admin/dashboard");
           break;
         case "employee":
           navigate("/employee/commandes");
