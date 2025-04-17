@@ -66,7 +66,7 @@ export default function Panier() {
         } catch (error) {
             console.error("Erreur détaillée :", error.response?.data || error.message);
             alert("Erreur lors de l'envoi de la commande.");
-          }          
+        }
     };
 
     return (
@@ -77,7 +77,8 @@ export default function Panier() {
                     <Link to="/client/accueil" className="text-2xl font-bold">PéAPInière 🌱</Link>
                     <div className="flex items-center space-x-4">
                         <Link to="/client/plants" className="hover:text-green-200">Nos Plantes</Link>
-                        <Link to="/client/panier" className="hover:text-green-200">🛒 Panier</Link>
+                        <Link to="/client/panier" className="hover:text-green-200">Panier</Link>
+                        <Link to="/client/mes-commandes" className="hover:text-green-200">Mes Commandes</Link>
                         <button onClick={handleLogout} className="bg-red-600 hover:bg-red-700 px-3 py-1 rounded-full text-sm">Déconnexion</button>
                     </div>
                 </div>
