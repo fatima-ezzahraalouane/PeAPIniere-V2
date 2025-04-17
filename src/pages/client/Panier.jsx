@@ -109,6 +109,15 @@ export default function Panier() {
                             </div>
                         ))}
                         <div className="text-right text-lg font-bold text-green-700">Total : {total} DH</div>
+                        
+                        <div className="text-right mt-4">
+                            <button
+                                onClick={handleOrder}
+                                className="bg-green-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-green-700"
+                            >
+                                ✅ Commander
+                            </button>
+                        </div>
                     </div>
                 )}
             </main>
