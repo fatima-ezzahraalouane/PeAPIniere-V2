@@ -8,6 +8,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Accueil from "./pages/client/Accueil";
 import Plantes from "./pages/client/Plantes";
 import PlantDetail from "./pages/client/PlantDetail";
+import Panier from "./pages/client/Panier";
 
 export default function App() {
   return (
@@ -37,6 +38,14 @@ export default function App() {
           element={
             <PrivateRoute role="client">
               <PlantDetail />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/client/panier"
+          element={
+            <PrivateRoute role="client">
+              <Panier />
             </PrivateRoute>
           }
         />
