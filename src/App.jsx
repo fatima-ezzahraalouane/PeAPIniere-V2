@@ -13,7 +13,6 @@ import CommandesEmploye from "./pages/employee/CommandesEmploye";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminCategories from "./pages/admin/AdminCategories";
 import AdminPlantes from "./pages/admin/AdminPlantes";
-import AdminStatistiques from "./pages/admin/AdminStatistiques";
 
 export default function App() {
   return (
