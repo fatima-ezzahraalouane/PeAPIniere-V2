@@ -112,7 +112,9 @@ export default function Plantes() {
                                         >
                                             Voir plus →
                                         </Link>
-                                        <button className="bg-green-600 text-white px-4 py-1 rounded-full text-sm hover:bg-green-700">
+                                        <button
+                                            onClick={() => addToCart(plant)}
+                                            className="bg-green-600 text-white px-4 py-1 rounded-full text-sm hover:bg-green-700">
                                             Ajouter au panier
                                         </button>
                                     </div>
