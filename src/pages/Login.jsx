@@ -28,7 +28,7 @@ export default function Login() {
           navigate("/admin/dashboard-admin");
           break;
         case "employee":
-          navigate("/employee/dashboard-employee");
+          navigate("/employee/commandes");
           break;
         case "client":
         default:
