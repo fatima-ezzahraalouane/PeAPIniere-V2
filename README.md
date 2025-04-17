@@ -1,76 +1,71 @@
-# README.md - Application Frontend PéAPinière
+# 🌿 PéAPInière - Gestion de Plantes en Ligne
 
-## 🌱 Présentation du projet
-
-Suite à la réussite de l'API RESTful **PéAPinière**, cette application frontend permet aux utilisateurs de gérer leurs plantes de manière conviviale. Elle est construite avec **React.js** et consomme l'API PéAPinière V2 (Laravel).
+Bienvenue sur le projet **PéAPInière**, une plateforme complète de gestion de plantes, conçue pour les clients, employés et administrateurs. Ce projet inclut une API Laravel (backend) et une interface utilisateur en React.js (frontend).
 
 ---
 
-## 🚀 Objectif principal
+## 🚀 Fonctionnalités
 
-Développer une application frontend intuitive qui permet aux utilisateurs de :
-- Suivre et visualiser les plantes disponibles
-- Passer des commandes
-- Suivre l’état des commandes
-- Accéder à leurs informations personnelles
+### Côté Client
+- 🔐 Authentification JWT (register/login)
+- 🪴 Consultation de toutes les plantes (avec filtres par catégorie)
+- 🛒 Panier avec ajout, suppression, modification de quantité
+- ✅ Passage de commande
+- 📦 Historique des commandes (avec annulation possible)
 
----
+### Côté Employé
+- 👀 Visualisation de toutes les commandes
+- 🔄 Modification du statut d'une commande (en attente / en préparation / livrée)
 
-## 👤 Utilisateurs & Rôles
-
-| Rôle        | Permissions principales |
-|--------------|--------------------------|
-| Client       | Consulter, commander, annuler, voir l'état |
-| Employé     | Gérer les commandes       |
-| Administrateur | CRUD sur plantes et catégories, voir les statistiques |
-
----
-
-## 📊 User Stories principales
-
-### Client
-- 🔐 Je peux **m’inscrire** et **me connecter** avec JWT.
-- 🌿 Je peux **consulter les plantes** (liste + détails via `/api/plants/:slug`).
-- 🛂 Je peux **passer une commande** avec quantités.
-- ✅ Je peux **suivre l’état de ma commande**.
-- ❌ Je peux **annuler ma commande** si elle est encore en attente.
-
-### Employé
-- 🛌 Je peux **me connecter** pour accéder aux commandes.
-- ⏳ Je peux **mettre à jour le statut** d’une commande (en préparation, livrée).
-
-### Administrateur
-- 📊 Je peux **consulter les statistiques** (ventes, catégories, top plantes).
-- 🌾 Je peux **créer, modifier, supprimer** des plantes et catégories.
+### Côté Admin
+- 📊 Tableau de bord
+- 🗂️ Gestion des catégories (CRUD)
+- 🌱 Gestion des plantes (CRUD + images (max 4))
+- 📈 Statistiques dynamiques (requêtes SQL optimisées)
 
 ---
 
-## 📅 Fonctionnalités développeur
+## 🧰 Technologies Utilisées
 
-- ✅ **Tests unitaires** pour l'authentification, la gestion des catégories et la récupération des plantes par slug (Spatie Sluggable).
-- 🎓 **Tests API** via **Postman**.
-- 🖋️ **Documentation Swagger** pour l'API.
-- ❌ **Gestion des erreurs** avec codes HTTP et messages explicites.
-- 💪 **DAO** pour isoler la logique d'accès aux données.
+### Backend (Laravel 10)
+- Sanctum pour auth API
+- Repositories + Form Request
+- PostgreSQL comme base de données
+- Sluggable (Spatie)
+- OpenAPI (Swagger)
+
+### Frontend (React + Tailwind CSS)
+- React Router DOM pour navigation
+- Axios pour les requêtes HTTP
+- Gestion des routes privées (PrivateRoute)
+- AdminLayout pour une UI cohérente
 
 ---
 
-## 🔒 Extras & Conventions
-
-- 🔒 Limitation à **4 images maximum** par plante avec message d'erreur personnalisé.
-- 🚧 **DTOs** utilisés pour valider et structurer les données.
-- 🔧 Architecture claire avec Repository, Services, Controllers.
+## 🔐 Authentification
+- Chaque utilisateur reçoit un token JWT à la connexion
+- Ce token est stocké dans `localStorage` et envoyé dans les headers pour toutes les routes protégées
 
 ---
 
-## 🎓 Technologies utilisées
+## 🛣️ Routes principales
 
-- **React.js** : frontend principal
-- **React Router DOM** : gestion de la navigation
-- **Axios** : requêtes HTTP vers l'API Laravel
-- **JWT Auth** : authentification via token
-- **Tailwind CSS** : design moderne et réactif
-- **Laravel API** : backend existant pour la logique métier
+### API Laravel
+- `POST /api/login`, `POST /api/register`
+- `GET /api/plants` (filtrage possible par catégorie)
+- `POST /api/orders` (client)
+- `GET /api/orders` (client)
+- `DELETE /api/orders/{id}` (client)
+- `GET /api/admin/orders` (employé)
+- `PUT /api/admin/orders/{id}/status` (employé)
+- `POST/PUT/DELETE /api/categories` (admin)
+- `POST/PUT/DELETE /api/plants` (admin)
+- `GET /api/admin/statistics/*` (admin)
+
+### Frontend React
+- `/login`, `/register`, `/client/accueil`, `/client/plants`, `/client/panier`, `/client/mes-commandes`
+- `/employee/commandes`
+- `/admin/dashboard`, `/admin/categories`, `/admin/plantes`
 
 ---
 
@@ -82,4 +77,6 @@ Développeuse : **Fatima-Ezzahra ALOUANE**
 ---
 
 ❤️ PéAPinière - Votre jardin, notre code !
+
+---
 
