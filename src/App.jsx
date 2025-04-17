@@ -95,14 +95,6 @@ export default function App() {
             </PrivateRoute>
           }
         />
-        <Route
-          path="/admin/statistiques"
-          element={
-            <PrivateRoute role="admin">
-              <AdminStatistiques />
-            </PrivateRoute>
-          }
-        />
       </Routes>
     </Router>
   );
