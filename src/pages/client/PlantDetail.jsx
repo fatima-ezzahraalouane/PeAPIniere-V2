@@ -74,7 +74,10 @@ export default function PlantDetail() {
                         <p className="text-green-700 text-xl font-semibold mb-2">{plant.price} DH</p>
                         <p className="text-gray-700 leading-relaxed mb-6">{plant.description}</p>
                         <p className="text-sm text-gray-500 mb-4">Catégorie : <span className="font-medium text-green-600">{plant.category.name}</span></p>
-                        <button className="bg-green-600 text-white py-2 px-5 rounded-full hover:bg-green-700 text-sm">Ajouter au panier</button>
+                        <button
+                            onClick={() => addToCart(plant)}
+                            className="bg-green-600 text-white py-2 px-5 rounded-full hover:bg-green-700 text-sm">Ajouter au panier
+                        </button>
                     </div>
                 </div>
             </main>
