@@ -9,6 +9,7 @@ import Accueil from "./pages/client/Accueil";
 import Plantes from "./pages/client/Plantes";
 import PlantDetail from "./pages/client/PlantDetail";
 import Panier from "./pages/client/Panier";
+import MesCommandes from "./pages/client/MesCommandes";
 
 export default function App() {
   return (
@@ -46,6 +47,14 @@ export default function App() {
           element={
             <PrivateRoute role="client">
               <Panier />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/client/mes-commandes"
+          element={
+            <PrivateRoute role="client">
+              <MesCommandes />
             </PrivateRoute>
           }
         />
