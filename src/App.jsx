@@ -1,4 +1,3 @@
-// src/App.jsx
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
@@ -10,6 +9,10 @@ import Plantes from "./pages/client/Plantes";
 import PlantDetail from "./pages/client/PlantDetail";
 import Panier from "./pages/client/Panier";
 import MesCommandes from "./pages/client/MesCommandes";
+import CommandesEmploye from "./pages/employee/CommandesEmploye";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminCategories from "./pages/admin/AdminCategories";
+import AdminPlantes from "./pages/admin/AdminPlantes";
 
 export default function App() {
   return (
@@ -55,6 +58,39 @@ export default function App() {
           element={
             <PrivateRoute role="client">
               <MesCommandes />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/employee/commandes"
+          element={
+            <PrivateRoute role="employee">
+              <CommandesEmploye />
+            </PrivateRoute>
+          }
+        />
+        {/* ADMIN ROUTES */}
+        <Route
+          path="/admin/dashboard"
+          element={
+            <PrivateRoute role="admin">
+              <AdminDashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/categories"
+          element={
+            <PrivateRoute role="admin">
+              <AdminCategories />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/plantes"
+          element={
+            <PrivateRoute role="admin">
+              <AdminPlantes />
             </PrivateRoute>
           }
         />
