@@ -37,6 +37,26 @@ export default function Plantes() {
         navigate("/login");
     };
 
+    const addToCart = (plant) => {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const existing = cart.find(item => item.id === plant.id);
+
+        if (existing) {
+            existing.quantity += 1;
+        } else {
+            cart.push({
+                id: plant.id,
+                name: plant.name,
+                price: plant.price,
+                quantity: 1,
+                image: plant.images[0]?.url || "https://via.placeholder.com/400x300"
+            });
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert("Plante ajoutée au panier !");
+    };
+
     return (
         <div className="min-h-screen flex flex-col bg-gray-50">
             {/* Navbar */}
