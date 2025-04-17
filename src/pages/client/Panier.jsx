@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Panier() {
     const navigate = useNavigate();
@@ -40,6 +41,33 @@ export default function Panier() {
     };
 
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2);
+
+    const handleOrder = async () => {
+        try {
+            const token = localStorage.getItem("token");
+
+            const orderData = {
+                plants: cart.map(item => ({
+                    id: item.id,
+                    quantity: item.quantity
+                }))
+            };
+
+            await axios.post("http://localhost:8000/api/orders", orderData, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            alert("Commande passée avec succès !");
+            setCart([]);
+            localStorage.removeItem("cart");
+            navigate("/client/accueil"); // ou une page de confirmation
+        } catch (error) {
+            alert("Erreur lors de l'envoi de la commande.");
+            console.error(error);
+        }
+    };
 
     return (
         <div className="min-h-screen flex flex-col bg-gray-50">
